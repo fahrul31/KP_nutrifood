@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<!-- third party css -->
+<link href="{% static 'libs/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables/responsive.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables/buttons.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables/select.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<!-- third party css end -->
+
+<!-- Footable css -->
+<link href="{% static 'libs/footable/footable.core.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<!-- ============================================================== -->
+<!-- Start Page Content here -->
+<!-- ============================================================== -->
+
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            {% include "base_page_title.html" %}
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">Tugas 3</h4>
+                            <div class="container">
+                                <h1>Task Form</h1>
+                          
+                                <div>
+                                  <a href="{% url 'message:index' %}" class="btn btn-success">Back to List</a>
+                                </div>
+                          
+                                <br>
+                          
+                                <div>
+                                  <!-- meload package untuk merender form field -->
+                                  {% load widget_tweaks %}
+                          
+                                  <form method="post" novalidate>
+                                    <!-- menambahkan csrf field untuk keamanan form -->
+                                    {% csrf_token %}
+                          
+                                    <!-- merender semua field form dari objek TaskForm -->
+                                    {% if form.non_field_errors %}
+                                      <div class="alert alert-danger" role="alert">
+                                        {% for error in form.non_field_errors %}
+                                          {{ error }}
+                                        {% endfor %}
+                                      </div>
+                                    {% endif %}
+                          
+                                    {% for field in form.visible_fields %}
+                                      <div class="form-group">
+                                        {{ field.label_tag }}
+                          
+                                        {% if form.is_bound %}
+                                          {% if field.errors %}
+                                            {% render_field field class="form-control is-invalid" %}
+                                            {% for error in field.errors %}
+                                              <div class="invalid-feedback">
+                                                {{ error }}
+                                              </div>
+                                            {% endfor %}
+                                          {% else %}
+                                            {% render_field field class="form-control is-valid" %}
+                                          {% endif %}
+                                        {% else %}
+                                          {% render_field field class="form-control" %}
+                                        {% endif %}
+                          
+                                        {% if field.help_text %}
+                                          <small class="form-text text-muted">{{ field.help_text }}</small>
+                                        {% endif %}
+                                      </div>
+                                    {% endfor %}
+                          
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                  </form>
+                                </div>
+                            </div>
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+            </div>
+            <!-- end row-->
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+
+    {% include "base_footer.html" %}
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+{% endblock %}
+
+{% block js %}
+
+<!-- third party js -->
+<script src="{% static 'libs/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'libs/datatables/dataTables.bootstrap4.js' %}"></script>
+<script src="{% static 'libs/datatables/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'libs/datatables/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'libs/datatables/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'libs/datatables/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'libs/datatables/buttons.html5.min.js' %}"></script>
+<script src="{% static 'libs/datatables/buttons.flash.min.js' %}"></script>
+<script src="{% static 'libs/datatables/buttons.print.min.js' %}"></script>
+<script src="{% static 'libs/datatables/dataTables.keyTable.min.js' %}"></script>
+<script src="{% static 'libs/datatables/dataTables.select.min.js' %}"></script>
+<script src="{% static 'libs/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'libs/pdfmake/vfs_fonts.js' %}"></script>
+<!-- third party js ends -->
+
+<!-- Datatables init -->
+<script src="{% static 'js/pages/datatables.init.js' %}"></script>
+
+{% endblock %}

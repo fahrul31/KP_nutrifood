@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<!-- third party css -->
+<link href="{% static 'libs/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables/responsive.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables/buttons.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables/select.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<!-- third party css end -->
+
+<!-- Footable css -->
+<link href="{% static 'libs/footable/footable.core.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<!-- ============================================================== -->
+<!-- Start Page Content here -->
+<!-- ============================================================== -->
+
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            {% include "base_page_title.html" %}
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">Tugas 3</h4>
+                            <div class="container">
+                                <h1>Detail Message</h1>
+                          
+                                <div>
+                                  <a href="{% url 'message:index' %}" class="btn btn-success">Kembali ke Daftar</a>
+                                </div>
+                          
+                                <br>
+                          
+                                <div>
+                                  <h2>{{ message.name }}</h2>
+                                  
+                                  <h4><span class="badge badge-warning">{{ message.nim }}</span></h3>
+                          
+                                  <p>
+                                      {{ message.messages }}
+                                  </p>
+                                </div>
+                            </div>
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+            </div>
+            <!-- end row-->
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+
+    {% include "base_footer.html" %}
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+{% endblock %}
+
+{% block js %}
+
+<!-- third party js -->
+<script src="{% static 'libs/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'libs/datatables/dataTables.bootstrap4.js' %}"></script>
+<script src="{% static 'libs/datatables/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'libs/datatables/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'libs/datatables/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'libs/datatables/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'libs/datatables/buttons.html5.min.js' %}"></script>
+<script src="{% static 'libs/datatables/buttons.flash.min.js' %}"></script>
+<script src="{% static 'libs/datatables/buttons.print.min.js' %}"></script>
+<script src="{% static 'libs/datatables/dataTables.keyTable.min.js' %}"></script>
+<script src="{% static 'libs/datatables/dataTables.select.min.js' %}"></script>
+<script src="{% static 'libs/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'libs/pdfmake/vfs_fonts.js' %}"></script>
+<!-- third party js ends -->
+
+<!-- Datatables init -->
+<script src="{% static 'js/pages/datatables.init.js' %}"></script>
+
+{% endblock %}
